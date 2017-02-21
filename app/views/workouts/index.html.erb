@@ -1,0 +1,31 @@
+<div class="container">
+	<h1>All Workouts</h1>
+
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Workout <br> Date</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @workouts.each do |workout| %>
+				<tr>
+					<td><%= workout.title %></td>
+					<td><%= workout.description %></td>
+					<td><%= workout.workout_date %></td>
+					<td>
+						<%= link_to "Show", workout_path(workout), class: "btn btn-info btn-xs" %>
+						<%= link_to "Edit", edit_workout_path(workout), class: "btn btn-success btn-xs" %>
+						<%= link_to "Delete", workout_path(workout), method: :delete, data: {confirm: "Sure to Delete?"}, class: "btn btn-danger btn-xs" %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<br>
+	<%= link_to "New Workout", new_workout_path, class: "btn btn-primary" %>	
+</div>

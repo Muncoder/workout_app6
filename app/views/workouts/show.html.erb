@@ -1,0 +1,11 @@
+<div class="container">
+	
+	<h1>Workout <%= @workout.title %></h1>
+	<hr>
+	Description : <%= @workout.description %>
+	<br>
+	Workout Date : <%= @workout.workout_date %>	
+	<hr>
+	<%= link_to "Back", workouts_path, class: "btn btn-primary" %>
+
+</div>
