@@ -1,0 +1,55 @@
+<div class="container">
+	<h1>My Dashboard</h1>	
+	<hr>
+
+	<div class="row">
+		<div class="col-md-8">
+			<h2>Workouts</h2>
+			<% @workouts.each do |workout| %>
+				<div class="well">
+					<%= workout.title %>
+				</div>
+			<% end %>
+
+			<hr>
+
+			<h2>Graph Display</h2>
+			<%= content_tag :div, "", id: "chart", data: { workouts: @workouts } %>
+		</div>
+		<div class="col-md-4">
+			<h2>Friends</h2>
+			<% @my_friends.each do |friend| %>
+				<div class="well">
+					<%= link_to user_dashboard_path(user_id: friend.id) do %>
+						<%= friend.email %>					
+					<% end %>
+
+					<%= link_to "Unfriend", friendship_path(current_user.already_friendship?(friend)), method: :delete, data: {confirm: "Sure to Unfriend"}, class: "btn btn-default"  %>
+				</div>
+			<% end %>
+
+
+		</div>
+	</div>
+
+</div>
+
+<script>
+	$(document).ready(function(){
+		new Morris.Line({
+		  // ID of the element in which to draw the chart.
+		  element: 'chart',
+		  // Chart data records -- each entry in this array corresponds to a point on
+		  // the chart.
+		  data: $('#chart').data('workouts'),
+		  // The name of the data record attribute that contains x-values.
+		  xkey: 'workout_date',
+		  // A list of names of data record attributes that contain y-values.
+		  ykeys: ['duration_in_min'],
+		  // Labels for the ykeys -- will be displayed when you hover over the
+		  // chart.
+		  labels: ['Duration (min)'],
+		  xLabels: "day"
+		});
+	})
+</script>

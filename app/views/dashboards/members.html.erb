@@ -1,0 +1,23 @@
+<div class="container">
+
+	<h1>Members List</h1>
+
+	<hr>
+
+	<% @members.each do |member| %>
+		<div class="well">
+			<% if member.first_name || member.last_name %>
+				<%= member.full_name %>		
+			<% else %>
+				<%= member.email %>		
+			<% end %>
+
+			-- 
+			<%= link_to "Follow", friendships_path(friend_id: member.id), method: :post, class: "btn btn-default" if !current_user.is_friend(member) %>
+
+			<%= link_to "Un-Follow", friendship_path(current_user.already_friendship?(member)), method: :delete, data: {confirm: "Sure to Unfriend?"}, class: "btn btn-default" if current_user.already_friendship?(member) %>
+
+		</div>
+	<% end %>
+
+</div>
