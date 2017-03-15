@@ -26,7 +26,8 @@ class WorkoutsController < ApplicationController
 	end
 
 	def show
-
+		@review = Review.new
+		@reviews = @workout.reviews
 	end
 
 	def save

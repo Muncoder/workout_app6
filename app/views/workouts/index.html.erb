@@ -13,7 +13,11 @@
 		<tbody>
 			<% @workouts.each do |workout| %>
 				<tr>
-					<td><%= workout.title %></td>
+					<td>
+						<%= link_to workout_path(workout) do %>
+							<%= workout.title %>						
+						<% end %>
+					</td>
 					<td><%= workout.description %></td>
 					<td><%= workout.workout_date %></td>
 					<td>

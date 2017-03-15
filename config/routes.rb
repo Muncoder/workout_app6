@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  resources :workouts
+  resources :workouts do
+    resources :reviews, only: [:create, :destroy]
+  end
 
   get 'members' => "dashboards#members"
 

@@ -16,5 +16,6 @@
 //= require bootstrap-sprockets
 //= require morris
 //= require raphael.min
+//= require jquery.raty
 //= require turbolinks
 //= require_tree .

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :workouts
   has_many :friendships
   has_many :friends, through: :friendships, class_name: 'User'
+  has_many :reviews
 
   def full_name
   	first_name + " " + last_name

@@ -8,4 +8,56 @@
 	<hr>
 	<%= link_to "Back", workouts_path, class: "btn btn-primary" %>
 
+	<hr>
+
+	<h1>Reviews</h1>
+	<hr>
+	<div id="review_average"></div>
+	<% @reviews.each do |review| %>
+		<div class="row">
+			<div class="col-md-2">
+				<%= image_tag avatar_url(review.user), class: "img-circle" %>
+			</div>
+			<div class="col-md-2">
+				<div id="star_<%= review.id %>"></div>
+
+			</div>
+			<div class="col-md-6">
+				<%= review.comments %>
+			</div>
+			<div class="col-md-1">
+				<%= link_to "Delete", workout_review_path(@workout, review), method: :delete, data: {confirm: "Sure to Delete?"}, class: "btn btn-danger btn-xs" %>
+			</div>
+		</div>
+
+		<script>
+			$(document).ready(function(){
+				$('#star_<%= review.id %>').raty({
+					path: '/assets',
+					scoreName: 'review[star]',
+					score: <%= review.star %>,
+					readOnly: true
+				});
+			});
+		</script>
+
+	<% end %>
+
+	<hr>
+	
+	<% if !@workout.has_reviews(current_user) %>
+		<%= render "reviews/form" %>	
+	<% end %>
+
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('#review_average').raty({
+			path: '/assets',
+			scoreName: 'review_average',
+			score: <%= @workout.review_average %>,
+			readOnly: true
+		})
+	});
+</script>

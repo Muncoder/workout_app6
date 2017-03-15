@@ -1,0 +1,35 @@
+<%= form_for([@workout, @review]) do |f| %>
+
+	<% if @review.errors.any? %>
+		<ul>
+			<% @review.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.hidden_field :workout_id, value: @workout.id %>
+
+	<div class="form-group">
+		<%= f.label :star  %>
+		<div id="review_star"></div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :comments  %>
+		<%= f.text_area :comments, class: "form-control"  %>
+	</div>
+	
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+
+<script>
+	$(document).ready(function(){
+		$('#review_star').raty({
+			path: '/assets',
+			scoreName: 'review[star]',
+			score: 1
+		});
+	});
+</script>
