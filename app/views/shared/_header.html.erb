@@ -30,6 +30,8 @@
         
       <% end %>
 
+      <%= link_to "Contact Us", new_contact_path, class: "btn navbar-btn btn-primary" %>
+
       <ul class="nav navbar-nav navbar-right">
         <% if !user_signed_in? %>
           <li><%= link_to "Sign In", new_user_session_path %></li>
