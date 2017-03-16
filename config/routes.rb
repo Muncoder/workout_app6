@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 
   get 'my_dashboard' => "dashboards#my_dashboard"
   get 'user_dashboard' => "dashboards#user_dashboard"
+  post 'search_user' => "dashboards#search_user"
 
 end

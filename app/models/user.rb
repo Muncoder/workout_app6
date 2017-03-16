@@ -40,4 +40,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.search_member(name)
+    where('first_name LIKE ? or last_name LIKE ?',
+      "%#{name}", "%#{name}").order(:first_name)
+  end
+
 end

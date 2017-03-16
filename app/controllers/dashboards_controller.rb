@@ -15,4 +15,8 @@ class DashboardsController < ApplicationController
 		@my_friends = @user.friends
 	end
 
+	def search_user
+		@members = User.search_member(params[:q])
+	end
+
 end
